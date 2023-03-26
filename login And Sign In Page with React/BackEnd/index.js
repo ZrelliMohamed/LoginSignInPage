@@ -8,7 +8,6 @@ app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 
 app.get('/api/user/:email/:password',(req,res)=>{
-    console.log(req.body);
     getOne((err,result)=>{
         if(err) res.status(400).json(err)
         else res.status(200).send(result);

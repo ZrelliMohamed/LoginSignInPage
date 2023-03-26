@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom";
-const SignInPage = () => {
+const SignInPage = ( {getUser}) => {
   const navigate = useNavigate()
   const [msg,setMsg]= useState('')
   const [user,setUser] = useState({
@@ -12,7 +12,7 @@ const SignInPage = () => {
   })
   const handelSubmit = ()=>{
     e.preventDefault();
-    axios.post("http://localhost:8000/api/user/addOne",user).then((result)=>{ navigate('/HomePage');console.log(result);})
+    axios.post("http://localhost:8000/api/user/addOne",user).then((result)=>{ navigate('/HomePage');getUser(user);})
           .catch((err)=>{setMsg('User Not Created')})
   }
   return (

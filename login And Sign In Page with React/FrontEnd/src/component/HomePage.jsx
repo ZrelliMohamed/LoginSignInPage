@@ -1,8 +1,9 @@
 import React from 'react'
 
-const HomePage = () => {
+const HomePage = ({user}) => {
   return (
-    <div>HomePage</div>
+    <div>Session of : {user.email} <br />
+          started At : {new Date().toString()}</div>
   )
 }
 

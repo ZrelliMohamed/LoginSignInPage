@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from "react-router-dom";
 import axios from "axios"
-const LoginPage = () => {
+const LoginPage = ({getUser}) => {
     const navigate = useNavigate();
     const [msg,setMsg]= useState('')
     // const [Email,setEmail]= useState('')
@@ -10,9 +10,10 @@ const LoginPage = () => {
     const [user,setUser]=useState({email:'',password:''})
      const handelSubmit = (e)=>{
       e.preventDefault();
+     
       axios.get(`http://localhost:8000/api/user/${user.email}/${user.password}`).then(({data})=>{
         setdata(data)
-        if(data.length) navigate("/HomePage")
+        if(data.length){ navigate("/HomePage"); getUser(user)}
         else setMsg('User Not Found')
     }).catch((err)=>{
         setMsg('User Not Found')
