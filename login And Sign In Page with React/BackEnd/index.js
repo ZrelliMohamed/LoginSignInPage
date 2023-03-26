@@ -14,6 +14,12 @@ app.get('/api/user/:email/:password',(req,res)=>{
         else res.status(200).send(result);
     },[req.params.email,req.params.password])
 })
+app.get('/api/user/getAll',(req,res)=>{
+    getAll((err,result)=>{
+        if(err) res.status(400).json(err)
+        else res.status(200).send(result);
+    })
+})
 
 app.post('/api/user/addOne',(req,res)=>{
     addOne((err,result)=>{
